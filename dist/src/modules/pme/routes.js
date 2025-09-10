@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const pme_controller_1 = require("./controller/pme.controller");
+const auth_guard_1 = require("../auth/auth.guard");
+const router = (0, express_1.Router)();
+router.post('/', auth_guard_1.authGuard, pme_controller_1.PmeController.create);
+router.get('/', auth_guard_1.authGuard, pme_controller_1.PmeController.findAll);
+router.get('/:id', auth_guard_1.authGuard, pme_controller_1.PmeController.findByUserId);
+router.put('/:id', auth_guard_1.authGuard, pme_controller_1.PmeController.update);
+router.delete('/:id', auth_guard_1.authGuard, pme_controller_1.PmeController.delete);
+exports.default = router;

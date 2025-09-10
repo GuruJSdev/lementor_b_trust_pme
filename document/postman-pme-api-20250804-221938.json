@@ -1,0 +1,183 @@
+{
+  "info": {
+    "name": "PME Management API",
+    "_postman_id": "pme-api-collection-uuid",
+    "description": "Collection pour l'API de gestion des PME avec authentification et op\u00e9rations CRUD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create PME",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nomEntreprise\": \"TechCorp\",\n  \"anneeCreation\": 2020,\n  \"statutLegal\": \"SARL\",\n  \"secteurActivite\": \"Technologie\",\n  \"nombreEmployes\": 50,\n  \"localisation\": \"Brazzaville\",\n  \"telephone\": \"+242065000000\",\n  \"email\": \"contact@techcorp.com\",\n  \"chiffreAffaires\": 1000000,\n  \"beneficeNet\": 250000,\n  \"ratioDettes\": 0.3,\n  \"tresorerieDisponible\": 150000,\n  \"delaiPaiementClients\": 30,\n  \"delaiPaiementFournisseurs\": 45,\n  \"budgetRD\": 50000,\n  \"nbProduitsLances\": 3,\n  \"enregistrePertes\": false,\n  \"accesCredit\": true,\n  \"garantiesFinancieres\": true,\n  \"rapportFinancier\": true,\n  \"businessPlan\": true,\n  \"caClientPrincipal\": 400000,\n  \"crmOuErp\": true,\n  \"diversification\": true,\n  \"dependanceMarchesPublics\": false,\n  \"investissementDigital\": true,\n  \"manuelProcedures\": true,\n  \"nbEmploisCrees\": 10,\n  \"pourcentageFemmes\": 40,\n  \"actionsSociales\": true,\n  \"respectEnvironnement\": true,\n  \"certification\": true,\n  \"oddImpactes\": \"ODD 9, ODD 12\",\n  \"actionsEcologiques\": \"Recyclage, R\\u00e9duction des d\\u00e9chets\",\n  \"dirigeantNom\": \"Jean Mabiala\",\n  \"experienceDirigeant\": 10,\n  \"formationDirigeant\": true,\n  \"equipeDirection\": true,\n  \"gouvernance\": true,\n  \"cartographieCompetences\": \"Leadership, Finance\",\n  \"planSuccession\": true,\n  \"formationContinue\": true,\n  \"tauxRotationPersonnel\": 5,\n  \"programmeBienEtre\": true,\n  \"defisActuels\": \"Acc\\u00e8s au financement\",\n  \"objectifs12Mois\": \"Lancer deux nouveaux produits\",\n  \"autorisationDonnees\": true,\n  \"nomSignataire\": \"Jean Mabiala\",\n  \"dateSignature\": \"2025-08-05\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pme",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pme"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All PME (by user_id)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/pme/{{user_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pme",
+            "{{user_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update PME",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nomEntreprise\": \"TechCorp Updated\",\n  \"anneeCreation\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pme/{{pme_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pme",
+            "{{pme_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete PME",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/pme/{{pme_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pme",
+            "{{pme_id}}"
+          ]
+        }
+      }
+    }
+  ]
+}

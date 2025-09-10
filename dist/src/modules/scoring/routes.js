@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+// import { N8nService } from './service/n8nWebhook.service';
+const auth_guard_1 = require("../auth/auth.guard");
+const n8n_controller_1 = require("./controller/n8n.controller");
+const router = (0, express_1.Router)();
+router.post('/', auth_guard_1.authGuard, n8n_controller_1.N8nController.create);
+exports.default = router;

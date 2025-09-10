@@ -1,0 +1,107 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  // id        String   @id @default(auto()) @map("_id") // MongoDB utilise `_id` comme identifiant
+  email     String   @unique
+  password  String
+  firstname String
+  lastname  String
+  role      String   // "admin", "pme", etc.
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PME {
+  id                       String   @id @default(uuid())
+  user_id                  String?
+  nomEntreprise            String
+  anneeCreation           Int
+  statutLegal             String
+  secteurActivite         String
+  nombreEmployes          Int
+  localisation            String
+  telephone               String
+  email                   String
+  historiqueBancaire      String?
+  visionStrategique       String?
+  chiffreAffaires         Float
+  beneficeNet             Float
+  ratioDettes             Float
+  tresorerieDisponible    Float
+  delaiPaiementClients    Int
+  delaiPaiementFournisseurs Int
+  budgetRD                Float
+  nbProduitsLances        Int
+  enregistrePertes        Boolean
+  accesCredit             Boolean
+  garantiesFinancieres    Boolean
+  rapportFinancier        Boolean
+  businessPlan            Boolean
+  caClientPrincipal       Float
+  crmOuErp                Boolean
+  diversification         Boolean
+  dependanceMarchesPublics Boolean
+  investissementDigital   Boolean
+  detailsDigitaux         String?
+  manuelProcedures        Boolean
+  resilience1             String?
+  resilience2             String?
+  resilience3             String?
+  nbEmploisCrees          Int
+  pourcentageFemmes       Float
+  actionsSociales         Boolean
+  detailsActionsSociales  String?
+  respectEnvironnement    Boolean
+  certification           Boolean
+  oddImpactes             String //[]
+  actionsEcologiques      String //[]
+  dirigeantNom            String
+  experienceDirigeant     Int
+  formationDirigeant      Boolean
+  equipeDirection         Boolean
+  gouvernance             Boolean
+  cartographieCompetences String //[]
+  planSuccession          Boolean
+  formationContinue       Boolean
+  tauxRotationPersonnel   Float
+  programmeBienEtre       Boolean
+  detailsBienEtre         String?
+  defisActuels            String //[]
+  objectifs12Mois         String //[]
+  benchmarking            String?
+  caMoyenSecteur          Float?
+  margeMoyenneSecteur     Float?
+  autorisationDonnees     Boolean
+  nomSignataire           String
+  dateSignature           String
+  injectable              String @default("{}")
+  autresActionsEcologiques String?
+}
+
+
+// model Rapport{
+//   id String   @id @default(uuid())
+//   data String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+model Rapport {
+  id          String   @id @default(uuid())
+  data        Json
+  user_id     String
+  entreprise_id String
+  createdAt   DateTime @default(now()) // ✅ nécessaire
+}
+
+
+

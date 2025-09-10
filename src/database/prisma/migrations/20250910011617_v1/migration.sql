@@ -1,0 +1,90 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "PME" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "user_id" TEXT,
+    "nomEntreprise" TEXT NOT NULL,
+    "anneeCreation" INTEGER NOT NULL,
+    "statutLegal" TEXT NOT NULL,
+    "secteurActivite" TEXT NOT NULL,
+    "nombreEmployes" INTEGER NOT NULL,
+    "localisation" TEXT NOT NULL,
+    "telephone" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "historiqueBancaire" TEXT,
+    "visionStrategique" TEXT,
+    "chiffreAffaires" REAL NOT NULL,
+    "beneficeNet" REAL NOT NULL,
+    "ratioDettes" REAL NOT NULL,
+    "tresorerieDisponible" REAL NOT NULL,
+    "delaiPaiementClients" INTEGER NOT NULL,
+    "delaiPaiementFournisseurs" INTEGER NOT NULL,
+    "budgetRD" REAL NOT NULL,
+    "nbProduitsLances" INTEGER NOT NULL,
+    "enregistrePertes" BOOLEAN NOT NULL,
+    "accesCredit" BOOLEAN NOT NULL,
+    "garantiesFinancieres" BOOLEAN NOT NULL,
+    "rapportFinancier" BOOLEAN NOT NULL,
+    "businessPlan" BOOLEAN NOT NULL,
+    "caClientPrincipal" REAL NOT NULL,
+    "crmOuErp" BOOLEAN NOT NULL,
+    "diversification" BOOLEAN NOT NULL,
+    "dependanceMarchesPublics" BOOLEAN NOT NULL,
+    "investissementDigital" BOOLEAN NOT NULL,
+    "detailsDigitaux" TEXT,
+    "manuelProcedures" BOOLEAN NOT NULL,
+    "resilience1" TEXT,
+    "resilience2" TEXT,
+    "resilience3" TEXT,
+    "nbEmploisCrees" INTEGER NOT NULL,
+    "pourcentageFemmes" REAL NOT NULL,
+    "actionsSociales" BOOLEAN NOT NULL,
+    "detailsActionsSociales" TEXT,
+    "respectEnvironnement" BOOLEAN NOT NULL,
+    "certification" BOOLEAN NOT NULL,
+    "oddImpactes" TEXT NOT NULL,
+    "actionsEcologiques" TEXT NOT NULL,
+    "dirigeantNom" TEXT NOT NULL,
+    "experienceDirigeant" INTEGER NOT NULL,
+    "formationDirigeant" BOOLEAN NOT NULL,
+    "equipeDirection" BOOLEAN NOT NULL,
+    "gouvernance" BOOLEAN NOT NULL,
+    "cartographieCompetences" TEXT NOT NULL,
+    "planSuccession" BOOLEAN NOT NULL,
+    "formationContinue" BOOLEAN NOT NULL,
+    "tauxRotationPersonnel" REAL NOT NULL,
+    "programmeBienEtre" BOOLEAN NOT NULL,
+    "detailsBienEtre" TEXT,
+    "defisActuels" TEXT NOT NULL,
+    "objectifs12Mois" TEXT NOT NULL,
+    "benchmarking" TEXT,
+    "caMoyenSecteur" REAL,
+    "margeMoyenneSecteur" REAL,
+    "autorisationDonnees" BOOLEAN NOT NULL,
+    "nomSignataire" TEXT NOT NULL,
+    "dateSignature" TEXT NOT NULL,
+    "injectable" TEXT NOT NULL DEFAULT '{}',
+    "autresActionsEcologiques" TEXT
+);
+
+-- CreateTable
+CREATE TABLE "Rapport" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "data" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
