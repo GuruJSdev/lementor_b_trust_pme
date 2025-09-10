@@ -81,9 +81,10 @@ CREATE TABLE "PME" (
 -- CreateTable
 CREATE TABLE "Rapport" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "data" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "data" JSONB NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "entreprise_id" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateIndex

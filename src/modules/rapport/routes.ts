@@ -4,7 +4,7 @@ const router = Router();
 
 // Routes CRUD
 router.get("/", RapportController.getAll);
-router.get("/:id", RapportController.getOne);
+router.get("/:id", RapportController.getLastByUser);
 // router.post("/", RapportController.create);
 router.put("/:id", RapportController.update);
 router.delete("/:id", RapportController.delete);
