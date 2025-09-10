@@ -39,20 +39,25 @@ static async getLastByUser(req: Request, res: Response) {
 }
 
   // Créer un nouveau rapport
-  static async create(data:any) {
-    // const { data } = req.body;
-    if (!data) return ;
+static async create(rapport_model: any) {
+  if (!rapport_model) return;
 
-    try {
-      const newRapport = await prisma.rapport.create({ data: { data } });
-      // res.status(201).json(newRapport);
-      return newRapport
-    } catch (error) {
-      console.error("[RapportController] create error:", error);
-      // res.status(500).json({ message: "Erreur lors de la création du rapport" });
-      return error
-    }
+  try {
+    const newRapport = await prisma.rapport.create({
+      data: {
+        data: rapport_model.data,             // JSON
+        user_id: rapport_model.user_id,       // string
+        entreprise_id: rapport_model.entreprise_id, // string
+        // createdAt sera automatique si défini @default(now()) dans Prisma
+      }
+    });
+
+    return newRapport;
+  } catch (error) {
+    console.error("[RapportController] create error:", error);
+    return error;
   }
+}
 
   // Mettre à jour un rapport
   static async update(req: Request, res: Response) {

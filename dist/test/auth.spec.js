@@ -1,4 +1,3 @@
-"use strict";
 // import request from 'supertest';
 // import app from '../src/app'; 
 // import { prisma } from '../src/database/prisma/seed';

@@ -11,11 +11,17 @@ class N8nService {
         const url = "https://n8n.srv864892.hstgr.cloud/webhook-test/trust-pme-evaluation";
         try {
             const response = await axios_1.default.post(url, data);
-            return response.data;
+            if (response && response.data) {
+                return response.data;
+            }
+            else {
+                return false;
+            }
         }
         catch (error) {
-            console.error('Erreur lors de l’appel à n8n', error);
-            throw new Error('Erreur n8n');
+            return error;
+            // console.error('Erreur lors de l’appel à n8n', error);
+            // throw new Error('Erreur n8n');
         }
     }
 }

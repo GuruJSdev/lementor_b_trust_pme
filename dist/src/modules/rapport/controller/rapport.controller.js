@@ -18,31 +18,41 @@ class RapportController {
         }
     }
     // Récupérer un rapport par id
-    static async getOne(req, res) {
-        const { id } = req.params;
+    static async getLastByUser(req, res) {
+        const { user_id } = req.params; // récupéré depuis l'URL
         try {
-            const rapport = await prisma.rapport.findUnique({ where: { id } });
-            if (!rapport)
-                return res.status(404).json({ message: "Rapport non trouvé" });
+            const rapport = await prisma.rapport.findFirst({
+                where: { user_id: user_id },
+                orderBy: { createdAt: "desc" }, // trie par date décroissante
+            });
+            if (!rapport) {
+                return res.status(404).json({ message: "Aucun rapport trouvé pour cet utilisateur" });
+            }
             res.json(rapport);
         }
         catch (error) {
-            console.error("[RapportController] getOne error:", error);
-            res.status(500).json({ message: "Erreur lors de la récupération du rapport" });
+            console.error("[RapportController] getLastByUser error:", error);
+            res.status(500).json({ message: "Erreur lors de la récupération du dernier rapport" });
         }
     }
     // Créer un nouveau rapport
-    static async create(req, res) {
-        const { data } = req.body;
-        if (!data)
-            return res.status(400).json({ message: "Le champ 'data' est obligatoire" });
+    static async create(rapport_model) {
+        if (!rapport_model)
+            return;
         try {
-            const newRapport = await prisma.rapport.create({ data: { data } });
-            res.status(201).json(newRapport);
+            const newRapport = await prisma.rapport.create({
+                data: {
+                    data: rapport_model.data, // JSON
+                    user_id: rapport_model.user_id, // string
+                    entreprise_id: rapport_model.entreprise_id, // string
+                    // createdAt sera automatique si défini @default(now()) dans Prisma
+                }
+            });
+            return newRapport;
         }
         catch (error) {
             console.error("[RapportController] create error:", error);
-            res.status(500).json({ message: "Erreur lors de la création du rapport" });
+            return error;
         }
     }
     // Mettre à jour un rapport

@@ -1,4 +1,3 @@
-"use strict";
 /**
  * parseTrustPMEReport
  * Transforme un rapport texte Trust PME (FR) en JSON exploitable.
