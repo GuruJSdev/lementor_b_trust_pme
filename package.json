@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development ts-node  ./src/server.ts",
     "test": "jest",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "migrate": "prisma migrate dev",
     "migrate:mongo": "npx prisma db push",
     "generate": "prisma generate",
